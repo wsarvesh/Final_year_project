@@ -1,5 +1,4 @@
 
-
 class PreProcessTweets:
     def __init__(self):
         from nltk.corpus import stopwords
@@ -8,16 +7,9 @@ class PreProcessTweets:
         
     def processTweets(self, list_of_tweets):
         processedTweets=[]
-#         print("1")
-#         print(list_of_tweets)
-#         for i in list_of_tweets:
-#             print(i["text"])
-#             break
             
         for tweet in list_of_tweets:
-#             print("22")
             processedTweets.append((self._processTweet(tweet["text"]),tweet["Classfication"]))
-#             print(processedTweets)
         return processedTweets
     
     def _processTweet(self, tweet):
