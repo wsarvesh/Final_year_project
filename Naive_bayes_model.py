@@ -1,8 +1,13 @@
+from nltk.corpus import stopwords
+from string import punctuation
+import re
+import nltk
+# word_features = {}
 
 class PreProcessTweets:
     def __init__(self):
-        from nltk.corpus import stopwords
-        from string import punctuation
+#         from nltk.corpus import stopwords
+#         from string import punctuation
         self._stopwords = set(stopwords.words('english') + list(punctuation) + ['AT_USER','URL'])
         
     def processTweets(self, list_of_tweets):
@@ -13,7 +18,7 @@ class PreProcessTweets:
         return processedTweets
     
     def _processTweet(self, tweet):
-        import re
+#         import re
         from nltk.tokenize import word_tokenize
         tweet = tweet.lower() # convert text to lower-case
         tweet = re.sub('((www\.[^\s]+)|(https?://[^\s]+))', 'URL', tweet) # remove URLs
@@ -26,7 +31,8 @@ class PreProcessTweets:
 
 
 def buildVocabulary(preprocessedTrainingData):
-    import nltk 
+#     import nltk 
+#     global word_features
     all_words = []
     
     for (words, sentiment) in preprocessedTrainingData:
@@ -38,6 +44,7 @@ def buildVocabulary(preprocessedTrainingData):
     return word_features
 
 def extract_features(tweet,word_features):
+#     global word_features
     tweet_words = set(tweet)
     features = {}
     for word in word_features:
