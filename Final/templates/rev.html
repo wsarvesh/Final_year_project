@@ -1,0 +1,62 @@
+{% extends 'base1.html' %}
+	{% block head %}
+		<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/rev.css') }}">
+	{% endblock %}
+	{% block body %}
+		<section class="container">
+			<div class="left-half">
+				<br>
+				<h1> Relevant Tweets </h1>
+				<div class="limiter">
+					<div class="container-table100">
+						<div class="wrap-table100">
+							<div class="table100">
+								<table>
+									<thead>
+										<tr class="table100-head">
+											<th class="column1">Select</th>
+											<th class="column2">Text</th>
+											<th class="column3">User Location</th>
+										</tr>
+									</thead>
+									<tbody>
+									{% for row in rows %}
+										{% set text = row["text"] %}
+										<form method="post">
+										<tr>
+											<td class="column1"><button name="command" value="{{text}}"><span>Get Info</span></button></td>
+											<td class="column2">{{text}}</td>
+											<td class="column3">{{row["user_location"]}}</td>
+										</tr>
+										</form>
+									{% endfor %}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="right-half">
+				<article>
+					<h1>Options</h1>
+					<br></br>
+					<div class="main">
+						<div class="sub-main">
+							<form method="post">
+							<center><button class="button-two" name="command" value="update"><span>Update</span></button></center>
+							<br></br>
+							<center><button class="button-two" name="command" value="priority"><span>Get Priority Tweets</span></button></center>
+							<br></br>
+							<center><button class="button-two" name="command" value="search"><span>Search other</span></button></center>
+							</form>
+							<br></br>
+						</div>
+					</div>
+				</article>
+			</div>
+			<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+			<script type= "text/javascript" src="{{ url_for('static', filename='js/main.js') }}") }}"></script>
+		</section>
+	{% endblock %}
+	

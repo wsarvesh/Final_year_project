@@ -1,0 +1,66 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: #92a8d1;
+	height:100%;
+}
+
+.container {
+
+    border-radius: 5px;
+    background-color: #f2f2f2;
+	width:500px;
+	height: 600px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+
+	transform:translate(-50%,-50%);
+	text-align:left;
+	padding: 30px;
+}
+
+.container .button-two{
+  text-align: center;
+  cursor: pointer;
+  font-size:18px;
+  margin: 0 0 0 0 px;
+  position: relative;
+  top: 50%;
+  left: 50%;
+}
+
+/*Button Two*/
+.container .button-two {
+  border-radius: 4px;
+  background-color:#ff9e2c;
+  border: none;
+  padding: 10px;
+  width: 100px;
+  transition: all 0.5s;
+}
+
+
+.container .button-two span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.container .button-two span:after {
+  content: '»';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.container .button-two:hover span {
+  padding-right: 25px;
+}
+
+.container .button-two:hover span:after {
+  opacity: 1;
+  right: 0;
+}
