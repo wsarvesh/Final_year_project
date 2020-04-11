@@ -1,0 +1,365 @@
+/* Pen-specific styles */
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: sans-serif;
+  line-height: 150%;
+  background: #EEF5FD
+  /*text-shadow: 0 2px 2px #b6701e;*/
+}
+
+section {
+  /*color: #fff;*/
+  text-align: center;
+}
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700italic);
+
+body{
+	font-family: 'Open Sans', sans-serif;
+}
+
+div {
+  height: 100%;
+}
+
+
+article {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 1.75rem;
+  margin: 0 0 0.75rem 0;
+}
+.main{
+  width: 100%;
+}
+.sub-main{
+  width: 20%;
+  margin:2px;
+  float: left;
+}
+
+.button-one, .button-two, .button-three{
+  text-align: center;
+  cursor: pointer;
+  font-size:18px;
+  margin: 0 0 0 0 px;
+  position: relative;
+  top: 50%;
+  left: 50%;
+}
+
+/*Button Two*/
+.button-two {
+  border-radius: 4px;
+  background-color:#ff9e2c;
+  border: none;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+}
+
+
+.button-two span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button-two span:after {
+  content: '»';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button-two:hover span {
+  padding-right: 25px;
+}
+
+.button-two:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+/* Pattern styles */
+.container {
+  display: table;
+  width: 100%;
+}
+
+.left-half {
+  overflow: auto;
+  /*background-color: #ff9e2c;*/
+  position: absolute;
+  left: 5px;
+  right: 5px;
+  width: 79%;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 2px 6px 20px 2px rgba(10,10,120,0.15);
+  background: -webkit-linear-gradient(45deg,#E0E0E0, #FFFFFF);
+  background: -o-linear-gradient(45deg, #E0E0E0, #FFFFFF);
+  background: -moz-linear-gradient(45deg, #E0E0E0, #FFFFFF);
+  background: linear-gradient(45deg, #E0E0E0, #FFFFFF);
+  }
+
+.right-half {
+  position: fixed;
+/*background-color: #b6701e;*/
+  position: absolute;
+  right: 0px;
+  width: 21%;
+  text-shadow: 0 2px 2px #add8e6;
+  color: black;
+}
+
+th{
+	text-align: center;
+}
+
+td{
+	text-align: center;
+}
+
+.left-half a {
+	margin: 0px;
+	transition: all 0.4s;
+	-webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+}
+
+.left-half a:focus {
+	outline: none !important;
+}
+
+.left-half a:hover {
+	text-decoration: none;
+}
+
+.left-half h1,h2,h3,h4,h5,h6 {margin: 0px;}
+
+.left-half p {margin: 0px;}
+
+.left-half ul, li {
+	margin: 0px;
+	list-style-type: none;
+}
+
+.left-half input {
+  display: block;
+	outline: none;
+	border: none !important;
+}
+
+.left-half textarea {
+  display: block;
+  outline: none;
+}
+
+.left-half textarea:focus, input:focus {
+  border-color: transparent !important;
+}
+
+/* ------------------------------------ */
+.left-half button {
+	outline: none !important;
+	border: none;
+	background: transparent;
+}
+
+.left-half .limiter {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.left-half .container-table100 {
+  width: 100%;
+  min-height: 100vh;
+  background: #FFFFFF;
+  background: -webkit-linear-gradient(45deg,#E0E0E0, #FFFFFF);
+  background: -o-linear-gradient(45deg, #E0E0E0, #FFFFFF);
+  background: -moz-linear-gradient(45deg, #E0E0E0, #FFFFFF);
+  background: linear-gradient(45deg, #E0E0E0, #FFFFFF);
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 33px 30px;
+}
+
+.left-half .wrap-table100 {
+  width: 1170px;
+}
+
+.left-half table {
+  border-spacing: 1;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+.left-half table * {
+  position: relative;
+}
+.left-half table td, table th {
+  padding-left: 8px;
+}
+.left-half table thead tr {
+  height: 60px;
+  background: #36304a;
+}
+.left-half table tbody tr {
+  height: 50px;
+}
+.left-half table tbody tr:last-child {
+  border: 0;
+}
+.left-half table td, table th {
+  text-align: center;
+}
+.left-half table td.l, table th.l {
+  text-align: center;
+}
+.left-half table td.c, table th.c {
+  text-align: center;
+}
+.left-half table td.r, table th.r {
+  text-align: center;
+}
+
+
+.left-half .table100-head th{
+  font-family: sans-serif;
+  font-size: 18px;
+  color: #fff;
+  line-height: 1.2;
+  font-weight: unset;
+}
+
+.left-half tbody tr:nth-child(even) {
+  background-color: #f5f5f5;
+}
+
+.left-half tbody tr {
+  font-family: sans-serif;
+  font-size: 15px;
+  color: #808080;
+  line-height: 1.2;
+  font-weight: unset;
+}
+
+.left-half tbody tr:hover {
+  color: #555555;
+  background-color: #f5f5f5;
+  cursor: pointer;
+}
+
+.left-half .column1 {
+  width: 60px;
+  padding-left: 40px;
+}
+
+.left-half .column2 {
+  width: 450px;
+}
+
+.left-half .column3 {
+  width: 60px;
+}
+
+
+
+@media screen and (max-width: 992px) {
+.left-half table {
+    display: block;
+  }
+.left-half table > *, table tr, table td, table th {
+    display: block;
+  }
+  .left-half table thead {
+    display: none;
+	text-align: center;
+  }
+  table tbody tr {
+    height: auto;
+    padding: 37px 0;
+  }
+  table tbody tr td {
+    padding-left: 40% !important;
+    margin-bottom: 24px;
+  }
+  table tbody tr td:last-child {
+    margin-bottom: 0;
+  }
+  table tbody tr td:before {
+    font-family: sans-serif;
+    font-size: 14px;
+    color: #999999;
+    line-height: 1.2;
+    font-weight: unset;
+    position: absolute;
+    width: 40%;
+    left: 30px;
+    top: 0;
+  }
+  table tbody tr td:nth-child(1):before {
+    content: "Select";
+  }
+  table tbody tr td:nth-child(2):before {
+    content: "Text";
+  }
+  table tbody tr td:nth-child(3):before {
+    content: "User Location";
+  }
+  }
+
+  .column1{
+	  text-align: left;
+	  font-family: sans-serif;
+	  width: 100%
+  }
+  .column2,
+  .column3 {
+    width: 100%;
+	text-align: center;
+  }
+
+  tbody tr {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  .container-table100 {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+.left-half button:hover {
+	cursor: pointer;
+}
+
+.left-half iframe {
+	border: none !important;
+}

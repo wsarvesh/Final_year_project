@@ -1,0 +1,29 @@
+<html>
+<head>
+	<title>Tweet Infomation</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/twtinfo.css')}}">
+</head>
+<body>
+<div class="container">
+	<h2 align="center">Tweet Information</h2><br>
+	<form method="post">
+		{% for row in rows %}
+			<b>User_name:</b> {{row["user_name"]}} <br><br>
+			<b>Text:</b> {{keyword}}<br><br>
+			<b>Location:</b> {{row["user_location"]}}<br><br>
+			<b>Posted At:</b> {{row["created_at"]}}<br><br>
+			<b>User Screen Name:</b> {{row["user_screen_name"]}}<br><br>
+			<b>Geo enabled:</b> {{row["geo_enabled"]}}<br><br>
+			<b>Geo_Location:</b> {{row["coordinates"]}}<br><br>
+			<b>Retweet Count:</b> {{row["retweet_count"]}}<br><br>
+			<b>Place:</b> {{row["place_name"]}}<br><br>
+			<b>Source:</b> {{row["source"]}}<br><br>
+		{% endfor %}
+		<br>
+		<button class="button-two" name="command" value="back"><span>Back</span></button>
+	</form>
+</div>
+</body>
+</html>

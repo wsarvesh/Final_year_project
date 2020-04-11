@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<title>Citadel Twitter</title>
+		<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/homepage.css') }}">
+	</head>
+	<body>
+		{% block body %}
+		<div class="w3-container">
+		<div class="hm">
+			<center><img src="{{url_for('static', filename='citadel.jpeg')}}" align="middle" height="370px" width="510px"/></center>
+		</div>
+		<div class="key">
+			<form method="POST">
+			<div class="search-wrapper">
+				<div class="input-holder">
+					<input type="text" class="search-input" placeholder="Type to search" name="query"/>
+					<button class="search-icon" onclick="searchToggle(this, event);"><span></span></button>
+				</div>
+				<span class="close" onclick="searchToggle(this, event);"></span>
+				<div class="result-container">
+				</div>
+			</div>
+			</form>
+		</div>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script type= "text/javascript" src= "{{ url_for('static',filename='js/homepage.js') }}"></script>
+		</div>
+		{% endblock %}
+	</body>
+</html>
