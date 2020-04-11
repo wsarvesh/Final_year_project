@@ -14,16 +14,16 @@ def homepage():
 		if((keyword.strip())):
 			return redirect('/rev')
 	return render_template('homepage.html')
-	
-@app.route('/rev',  methods=['GET', 'POST'])	
+
+@app.route('/rev',  methods=['GET', 'POST'])
 def rev():
 	try:
-		con=sql.connect("C:\\Users\\sayali\\Documents\\GitHub\\Final_year_ptoject\\tweet2.db")
+		con=sql.connect("../tweet2.db")
 		con.row_factory=sql.Row
 
 	except Error:
 		print(Error)
-		
+
 	cur=con.cursor()
 	cur.execute("SELECT text,user_location FROM tweets")
 
@@ -32,7 +32,7 @@ def rev():
 	rows.reverse()
 	i=0
 	for row in rows:
-		i+=1	
+		i+=1
 	print(i)
 	if request.method == 'POST':
 		form = request.form
@@ -50,21 +50,21 @@ def rev():
 
 	return render_template('rev.html', rows=rows)
 
-@app.route('/prior',  methods=['GET', 'POST'])	
+@app.route('/prior',  methods=['GET', 'POST'])
 def prior():
 	try:
-		con=sql.connect("C:\\Users\\sayali\\Documents\\GitHub\\Final_year_ptoject\\tweet2.db")
+		con=sql.connect("../tweet2.db")
 		con.row_factory=sql.Row
 
 	except Error:
 		print(Error)
-		
+
 	cur=con.cursor()
 	cur.execute("SELECT text,user_location FROM tweets")
 
 	rows=cur.fetchall();
 	rows.reverse()
-	
+
 	if request.method == 'POST':
 		form = request.form
 		keyword = form['command']
@@ -82,16 +82,16 @@ def prior():
 			return about(keyword)
 
 	return render_template('prior.html', rows=rows)
-	
+
 @app.route('/about', methods=['GET', 'POST'])
 def about(keyword):
 	try:
-		con=sql.connect("C:\\Users\\sayali\\Documents\\GitHub\\Final_year_ptoject\\tweet2.db")
+		con=sql.connect("../tweet2.db")
 		con.row_factory=sql.Row
 
 	except Error:
 		print(Error)
-		
+
 	cur=con.cursor()
 	cur.execute("SELECT * FROM tweets where text = ?",[keyword])
 
@@ -100,6 +100,6 @@ def about(keyword):
 	print(type(rows))
 	return render_template('displayinfo.html',keyword=keyword,rows=rows)
 
-	
+
 if __name__=='__main__':
     app.run(debug=True)
