@@ -133,6 +133,8 @@ class StdOutListener(StreamListener):
         print(status)
 
     def on_data(self, data):
+        if hashtag == '-1':
+            return False
         all_data             = json.loads(data)
         created_at           = all_data['created_at']
         favorite_count       = all_data['favorite_count']
@@ -194,17 +196,9 @@ class StdOutListener(StreamListener):
 
         conn.commit()
 
-        c.execute("SELECT text,user_location FROM all_tweet")
-
-        rows=c.fetchall();
-    	#print(type(rows))
-        rows.reverse()
-
-        render_template('rev.html', rows=rows)
-        print("yoyoyoyyoo")
 
 def stream(h):
-    print(h)
+    print("              hfdshjdskfjdsklfjsdlkfjdslkfjflksdjfklsfjslk               ",h)
 
     global hashtag
     hashtag = h

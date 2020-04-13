@@ -3,27 +3,44 @@ import sqlite3 as sql
 from flask_bootstrap import Bootstrap
 from flask import request, redirect, session, jsonify, flash
 from stream_xg import stream
+import threading
 
 
 class Thread (threading.Thread):
-    def __init__(self):
-        threading.Thread.__init__(self)
+	def __init__(self):
+		threading.Thread.__init__(self)
 
-    def run(self):
-        stream()
+	def run(self):
+		stream(h)
 
 app = Flask(__name__)
 Bootstrap(app)
 
+
 @app.route('/', methods=['GET','POST'])
 def homepage():
+	global t
+	t = Thread()
 	if request.method == 'POST':
 		form = request.form
-		global k
-		k = form['query']
-		if((k.strip())):
+		global h
+		h = form['query']
+		pt()
+		print("\n\n\n")
+		if 'h' in locals(): print("It's local") #Replace 'variable' with the variable
+		elif 'h' in globals(): print("It's global") #But keep the quotation marks
+		else: print("It's not defined")
+		print("\n\n\n")
+		if((h.strip())):
+			t.start()
 			return redirect('/rev')
 	return render_template('homepage.html')
+
+def pt():
+	return h
+
+def rt():
+	return t
 
 @app.route('/rev',  methods=['GET', 'POST'])
 def rev():
@@ -33,8 +50,11 @@ def rev():
 
 	except Error:
 		print(Error)
-
-	print(k)
+	h = pt()
+	if 'h' in locals(): print("It's local") #Replace 'variable' with the variable
+	elif 'h' in globals(): print("It's global") #But keep the quotation marks
+	else: print("It's not defined")
+	print(h)
 
 	if request.method == 'POST':
 		form = request.form
@@ -44,17 +64,19 @@ def rev():
 		if(keyword == 'priority'):
 			return redirect('/prior')
 		if(keyword == 'search'):
+			h = "-1"
+			t = Thread()
+			t.start()
 			return redirect('/')
 		if(keyword == 'back'):
+			h = "-1"
+			t.start()
 			return redirect('/rev')
 		else:
 			return about(keyword)
 
-	t = Thread()
-    t.start()
-
 	cur=con.cursor()
-	cur.execute("SELECT text,user_location FROM all_tweet")
+	cur.execute("SELECT text,user_location FROM all_tweet WHERE hashtag = ?",[h])
 
 	rows=cur.fetchall();
 	#print(type(rows))
@@ -91,6 +113,8 @@ def prior():
 		if(keyword == 'search'):
 			return redirect('/')
 		if(keyword == 'back'):
+			h = "-1"
+			t.start()
 			return redirect('/rev')
 		else:
 			#return render_template('about.html', keyword=keyword)
@@ -118,4 +142,4 @@ def about(keyword):
 
 
 if __name__=='__main__':
-    app.run(debug=True)
+	app.run(debug=True, threaded=True)
