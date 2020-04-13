@@ -19,7 +19,6 @@ Bootstrap(app)
 
 @app.route('/', methods=['GET','POST'])
 def homepage():
-	global t
 	t = Thread()
 	if request.method == 'POST':
 		form = request.form
