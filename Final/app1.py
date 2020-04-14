@@ -28,10 +28,10 @@ def homepage():
 		h = form['query']
 		session['h'] = h
 		print("\n\n\n")
-		if 'h' in locals(): print("It's local") #Replace 'variable' with the variable
-		elif 'h' in globals(): print("It's global") #But keep the quotation marks
-		else: print("It's not defined")
-		print("\n\n\n")
+		#if 'h' in locals(): print("It's local") #Replace 'variable' with the variable
+		#elif 'h' in globals(): print("It's global") #But keep the quotation marks
+		#else: print("It's not defined")
+		#print("\n\n\n")
 		if((h.strip())):
 			t.start()
 			return redirect('/rev')
@@ -39,9 +39,6 @@ def homepage():
 
 def pt():
 	return h
-
-def rt():
-	return t
 
 @app.route('/rev',  methods=['GET', 'POST'])
 def rev():
@@ -52,9 +49,6 @@ def rev():
 	except Error:
 		print(Error)
 	h = session['h']
-	if 'h' in locals(): print("It's local") #Replace 'variable' with the variable
-	elif 'h' in globals(): print("It's global") #But keep the quotation marks
-	else: print("It's not defined")
 	print(h)
 
 	if request.method == 'POST':
