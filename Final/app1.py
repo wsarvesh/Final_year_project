@@ -16,6 +16,8 @@ class Thread (threading.Thread):
 app = Flask(__name__)
 Bootstrap(app)
 
+app.config['SECRET_KEY'] = "abc"
+
 
 @app.route('/', methods=['GET','POST'])
 def homepage():
@@ -24,7 +26,7 @@ def homepage():
 		form = request.form
 		global h
 		h = form['query']
-		pt()
+		session['h'] = h
 		print("\n\n\n")
 		if 'h' in locals(): print("It's local") #Replace 'variable' with the variable
 		elif 'h' in globals(): print("It's global") #But keep the quotation marks
@@ -49,7 +51,7 @@ def rev():
 
 	except Error:
 		print(Error)
-	h = pt()
+	h = session['h']
 	if 'h' in locals(): print("It's local") #Replace 'variable' with the variable
 	elif 'h' in globals(): print("It's global") #But keep the quotation marks
 	else: print("It's not defined")
