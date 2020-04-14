@@ -164,6 +164,7 @@ class StdOutListener(StreamListener):
         else:
             place_name       = all_data['place']
 
+        print("hashtag: ",hashtag)
         print("Tweet: "+text+"\n")
 
         data = [{'text': text,'Classfication': ''}]
@@ -203,6 +204,7 @@ def stream(h):
     global hashtag
     hashtag = h
     # if __name__ == '__main__':
+    print("hashtag: ",hashtag)
 
     fetched_tweets_filename = "tweets.json"
 

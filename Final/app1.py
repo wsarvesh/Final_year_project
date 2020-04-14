@@ -22,23 +22,22 @@ app.config['SECRET_KEY'] = "abc"
 @app.route('/', methods=['GET','POST'])
 def homepage():
 	t = Thread()
+	session['h'] = "-1"
+	global h
+	h = "-1"
+	t.start()
 	if request.method == 'POST':
 		form = request.form
-		global h
 		h = form['query']
 		session['h'] = h
-		print("\n\n\n")
-		#if 'h' in locals(): print("It's local") #Replace 'variable' with the variable
-		#elif 'h' in globals(): print("It's global") #But keep the quotation marks
-		#else: print("It's not defined")
-		#print("\n\n\n")
 		if((h.strip())):
+			t = Thread()
 			t.start()
 			return redirect('/rev')
 	return render_template('homepage.html')
 
-def pt():
-	return h
+# def pt():
+# 	return h
 
 @app.route('/rev',  methods=['GET', 'POST'])
 def rev():
@@ -48,8 +47,8 @@ def rev():
 
 	except Error:
 		print(Error)
-	h = session['h']
-	print(h)
+	# h = session['h']
+	print(session['h'])
 
 	if request.method == 'POST':
 		form = request.form
@@ -59,19 +58,14 @@ def rev():
 		if(keyword == 'priority'):
 			return redirect('/prior')
 		if(keyword == 'search'):
-			h = "-1"
-			t = Thread()
-			t.start()
 			return redirect('/')
 		if(keyword == 'back'):
-			h = "-1"
-			t.start()
 			return redirect('/rev')
 		else:
 			return about(keyword)
 
 	cur=con.cursor()
-	cur.execute("SELECT text,user_location FROM all_tweet WHERE hashtag = ?",[h])
+	cur.execute("SELECT text,user_location FROM all_tweet WHERE hashtag = ?",[session['h']])
 
 	rows=cur.fetchall();
 	#print(type(rows))
@@ -108,8 +102,6 @@ def prior():
 		if(keyword == 'search'):
 			return redirect('/')
 		if(keyword == 'back'):
-			h = "-1"
-			t.start()
 			return redirect('/rev')
 		else:
 			#return render_template('about.html', keyword=keyword)

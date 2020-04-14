@@ -1,5 +1,6 @@
 {% extends 'base1.html' %}
 	{% block head %}
+		<!-- <meta http-equiv="refresh" content="5"> -->
 		<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/rev.css') }}">
 	{% endblock %}
 	{% block body %}
@@ -45,7 +46,7 @@
 					<div class="main">
 						<div class="sub-main">
 							<form method="post">
-							<center><button class="button-two" name="command" value="update"><span>Update</span></button></center>
+							<center><button class="button-two" name="command" id="command" value="update"><span>Update</span></button></center>
 							<br></br>
 							<center><button class="button-two" name="command" value="priority"><span>Get Priority Tweets</span></button></center>
 							<br></br>
@@ -59,4 +60,10 @@
 			<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 			<script type= "text/javascript" src="{{ url_for('static', filename='js/main.js') }}") }}"></script>
 		</section>
+
+		<script type="text/javascript">
+
+			setInterval(function () {document.getElementById("command").click();}, 5000);
+
+		</script>
 	{% endblock %}
