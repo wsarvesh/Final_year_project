@@ -26,6 +26,7 @@ def homepage():
 	global h
 	h = "-1"
 	t.start()
+	t.join()
 	if request.method == 'POST':
 		form = request.form
 		h = form['query']

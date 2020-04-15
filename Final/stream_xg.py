@@ -108,7 +108,13 @@ def attributeselection(tweet,query_word):
     arr_x=df.to_numpy(dtype=object)
     print(arr_x,arr_x.shape)
     y_pred = XGBClassifier.predict(arr_x)
-    print("PRIORITY: ",y_pred)
+    if y_pred == '[0]':
+        print("0")
+    else:
+        print("1")
+
+    print(y_pred[0],type(y_pred[0]),y_pred.shape)
+    return y_pred
 
 
 
@@ -170,9 +176,11 @@ class StdOutListener(StreamListener):
         data = [{'text': text,'Classfication': ''}]
 
         info = pred(data)
+        prior = '[0]'
 
         if info == 'Relevant' or info == 1 or info == '1':
-            attributeselection(text,'coronavirus')
+            prior = attributeselection(text,hashtag)
+        print("PRIORITY: ",prior)
 
         print("\n Class: "+info+"\n")
 
@@ -183,17 +191,17 @@ class StdOutListener(StreamListener):
         (hashtag,created_at, favorite_count, favorited, filter_level, lang,
                          retweet_count, retweeted, source, text, truncated, user_created_at,
                          user_followers_count, user_location, user_lang, user_name,
-                         user_screen_name, user_time_zone, user_friends_count,geo_enabled,coordinates,geo,place_name )
-            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''',
+                         user_screen_name, user_time_zone, user_friends_count,geo_enabled,coordinates,geo,place_name,class,priority )
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''',
             (hashtag,created_at, favorite_count, favorited, filter_level, lang, retweet_count,
                          retweeted, source, text, truncated, user_created_at,
                          user_followers_count, user_location, user_lang, user_name,
-                         user_screen_name, user_time_zone, user_friends_count,geo_enabled,coordinates,geo,place_name ))
+                         user_screen_name, user_time_zone, user_friends_count,geo_enabled,coordinates,geo,place_name,info,prior ))
 
-        c.execute('''INSERT INTO tweet_class
-        (text, class)
-            VALUES (?,?)''',
-            (text, info))
+        # c.execute('''INSERT INTO tweet_class
+        # (text, class)
+        #     VALUES (?,?)''',
+        #     (text, info))
 
         conn.commit()
 
