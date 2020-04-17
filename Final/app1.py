@@ -30,8 +30,9 @@ def homepage():
 	if request.method == 'POST':
 		form = request.form
 		h = form['query']
+		print("searched for     :",h)
 		session['h'] = h
-		if((h.strip())):
+		if((h.strip()) and h != "-1"):
 			t = Thread()
 			t.start()
 			return redirect('/rev')
