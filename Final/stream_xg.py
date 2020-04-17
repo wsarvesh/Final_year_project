@@ -108,13 +108,15 @@ def attributeselection(tweet,query_word):
     arr_x=df.to_numpy(dtype=object)
     print(arr_x,arr_x.shape)
     y_pred = XGBClassifier.predict(arr_x)
-    if y_pred == '[0]':
+    str_y_pred = str(y_pred[0])
+    if str_y_pred == '[0]':
         print("0")
     else:
         print("1")
 
     print(y_pred[0],type(y_pred[0]),y_pred.shape)
-    return y_pred
+    print(str_y_pred,type(str_y_pred))
+    return str_y_pred
 
 
 
@@ -176,7 +178,7 @@ class StdOutListener(StreamListener):
         data = [{'text': text,'Classfication': ''}]
 
         info = pred(data)
-        prior = '[0]'
+        prior = '0'
 
         if info == 'Relevant' or info == 1 or info == '1':
             prior = attributeselection(text,hashtag)

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, redirect, request
+from flask import Flask, render_template, url_for, redirect, request, flash
 import sqlite3 as sql
 from flask_bootstrap import Bootstrap
 from flask import request, redirect, session, jsonify, flash
@@ -30,12 +30,14 @@ def homepage():
 	if request.method == 'POST':
 		form = request.form
 		h = form['query']
-		print("searched for     :",h)
+		#print("searched for     :",h)
 		session['h'] = h
 		if((h.strip()) and h != "-1"):
 			t = Thread()
 			t.start()
 			return redirect('/rev')
+		else:
+			flash("Oops, Found Nothing!")
 	return render_template('homepage.html')
 
 # def pt():
@@ -67,8 +69,7 @@ def rev():
 			return about(keyword)
 
 	cur=con.cursor()
-	cur.execute("SELECT text,user_location FROM all_tweet WHERE hashtag = ?",[session['h']])
-
+	cur.execute("SELECT text,user_location FROM all_tweet WHERE hashtag = ? AND class = ? ",[session['h'],'Relevant'])
 	rows=cur.fetchall();
 	#print(type(rows))
 	rows.reverse()
@@ -89,7 +90,7 @@ def prior():
 		print(Error)
 
 	cur=con.cursor()
-	cur.execute("SELECT text,user_location FROM tweets")
+	cur.execute("SELECT text,user_location FROM all_tweet WHERE hashtag = ? AND priority = ? ",[session['h'],'1'])
 
 	rows=cur.fetchall();
 	rows.reverse()
@@ -122,7 +123,7 @@ def about(keyword):
 		print(Error)
 
 	cur=con.cursor()
-	cur.execute("SELECT * FROM tweets where text = ?",[keyword])
+	cur.execute("SELECT * FROM all_tweet where text = ?",[keyword])
 
 	rows=cur.fetchall();
 	print(rows)

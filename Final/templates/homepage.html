@@ -18,6 +18,13 @@
 				</div>
 				<span class="close" onclick="searchToggle(this, event);"></span>
 				<div class="result-container">
+				{% with messages = get_flashed_messages() %}  
+					{% if messages %}  
+						{% for message in messages %}  
+							<p>{{ message }}</p>  
+						{% endfor %}  
+					{% endif %}  
+				{% endwith %}  
 				</div>
 			</div>
 			</form>
