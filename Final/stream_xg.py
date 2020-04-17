@@ -1,4 +1,4 @@
-from tweepy.streaming import StreamListener
+
 from tweepy import OAuthHandler
 from tweepy import Stream
 import pandas as pd
@@ -14,6 +14,7 @@ nltk.download('averaged_perceptron_tagger')
 import pickle
 from Naive_bayes_model import *
 import xgboost as xgb
+from tweepy.streaming import StreamListener
 
 
 f = open('models/nb2.pickle', 'rb')
