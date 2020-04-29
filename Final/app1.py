@@ -99,7 +99,7 @@ def prior():
 		form = request.form
 		keyword = form['command']
 		if(keyword == 'update'):
-			return redirect('/priority')
+			return redirect('/prior')
 		if(keyword == 'relevant'):
 			return redirect('/rev')
 		if(keyword == 'search'):
