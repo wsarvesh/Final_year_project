@@ -3,7 +3,11 @@
 	<title>Tweet Infomation</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script defer src="script.js"></script>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/twtinfo.css')}}">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type= "text/javascript" defer src= "{{ url_for('static',filename='js/script.js') }}"></script>
 </head>
 <body>
 <div class="container">
@@ -24,6 +28,50 @@
 		<br>
 		<button class="button-two" name="command" value="back"><span>Back</span></button>
 	</form>
+	<button data-modal-target="#modal" class="button-two" name="command" value="notify" ><span>Notify</span></button>
+	<div class="modal" id="modal">
+		<div class="modal-header">
+			<div class="title">Details</div>
+				<button data-close-button class="close-button">&times;</button>
+			</div>
+			<div class="modal-body">
+				<p>Currently available for only Mumbai, Delhi, Kolkata, Chennai, Hyderabad and Banglore.</p>
+				<table>
+					<tr>
+						<td>Hospitals</td>
+						<td>Name</td>
+						<td><button class="button-two" name="command" value="hosp"><span>Notify</span></button></td>
+					</tr>
+					<br>
+					<tr>
+						<td>Police</td>
+						<td>Name</td>
+						<td><button class="button-two" name="command" value="police"><span>Notify</span></button></td>
+					</tr>
+					<tr>
+						<td>Government Body</td>
+						<td>Name</td>
+						<td><button class="button-two" name="command" value="gov"><span>Notify</span></button></td>
+					</tr>
+					<tr>
+						<td>Fire Brigade</td>
+						<td>Name</td>
+						<td><button class="button-two" name="command" value="fire"><span>Notify</span></button></td>
+					</tr>
+					<tr>
+						<td>NGO</td>
+						<td>Name</td>
+						<td><button class="button-two" name="command" value="ngo"><span>Notify</span></button></td>
+					</tr>
+					<tr>
+						<td>Emergency Services  </td>
+						<td>Name</td>
+						<td><button class="button-two" name="command" value="emerg"><span>Notify</span></button></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div id="overlay"></div>
 </div>
 </body>
 </html>
