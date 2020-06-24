@@ -136,12 +136,16 @@ def about(keyword):
 	if request.method == 'POST':
 		form = request.form
 		keyword = form['command']
+		print("done on goal")
 		if(keyword == 'hosp'):
 			for row in rows:
+				msg = "User Name:" + row["user_name"] + " User Location :"  +row["user_location"]+  " Time: "+row["created_at"]+" Co-oridnates "+row["coordinates"]+" Place : "+row["place_name"]+" Source "+row["source"]
 				client.messages.create(to="+918104890460", 
                        from_="+15592451737", 
-                       body='User Name: {} User Location :{} Time: {} Co-oridnates {} Place : {} Source {}'.format(row["user_name"],row["user_location"],row["created_at"],row["coordinates"],row["place_name"],row["source"]))
-			print("DONE")
+                       #body="User Name: {} User Location :{} Time: {} Co-oridnates {} Place : {} Source {}"+row["user_name"]+row["user_location"],row["created_at"],row["coordinates"],row["place_name"],row["source"]))
+						body=msg
+						)
+		#print("DONE")
 		if(keyword == 'police'):
 			client.messages.create(to="+918104890460", 
                        from_="+15592451737", 
@@ -154,7 +158,6 @@ def about(keyword):
 			client.messages.create(to="+918104890460", 
                        from_="+15592451737", 
                        body="Report zhala complete!")
-		keyword = form['command']
 		if(keyword == 'ngo'):
 			client.messages.create(to="+918104890460", 
                        from_="+15592451737", 
