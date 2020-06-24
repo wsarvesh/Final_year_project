@@ -4,6 +4,7 @@ from flask_bootstrap import Bootstrap
 from flask import request, redirect, session, jsonify, flash
 from stream_xg import stream
 import threading
+from twilio.rest import Client
 
 
 class Thread (threading.Thread):
@@ -128,6 +129,41 @@ def about(keyword):
 	rows=cur.fetchall();
 	print(rows)
 	print(type(rows))
+	
+	# the following line needs your Twilio Account SID and Auth Token
+	client = Client("AC3964d536be16e00094f027bdd3b3ae30", "98a87736c8ebc28ba22e80628afa16f0")
+	
+	if request.method == 'POST':
+		form = request.form
+		keyword = form['command']
+		if(keyword == 'hosp'):
+			for row in rows:
+				client.messages.create(to="+918104890460", 
+                       from_="+15592451737", 
+                       body='User Name: {} User Location :{} Time: {} Co-oridnates {} Place : {} Source {}'.format(row["user_name"],row["user_location"],row["created_at"],row["coordinates"],row["place_name"],row["source"]))
+			print("DONE")
+		if(keyword == 'police'):
+			client.messages.create(to="+918104890460", 
+                       from_="+15592451737", 
+                       body="Report zhala complete!")
+		if(keyword == 'gov'):
+			client.messages.create(to="+918104890460", 
+                       from_="+15592451737", 
+                       body="Report zhala complete!")
+		if(keyword == 'fire'):
+			client.messages.create(to="+918104890460", 
+                       from_="+15592451737", 
+                       body="Report zhala complete!")
+		keyword = form['command']
+		if(keyword == 'ngo'):
+			client.messages.create(to="+918104890460", 
+                       from_="+15592451737", 
+                       body="Report zhala complete!")
+		if(keyword == 'emerg'):
+			client.messages.create(to="+918104890460", 
+                       from_="+15592451737", 
+                       body="Report zhala complete!")
+			
 	return render_template('displayinfo.html',keyword=keyword,rows=rows)
 
 
