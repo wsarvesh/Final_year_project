@@ -138,17 +138,17 @@ def about(keyword):
 		form = request.form
 		notifyp = form['command'].split(".")
 		print("done on goal", notifyp)
-		if(notifyp[0] == 'hosp'):
-			print(notifyp[1])
+		if len(notifyp) == 2:
 			cur.execute("SELECT * FROM all_tweet where user_id = ?",[notifyp[1]])
 			rows=cur.fetchall();
+		if(notifyp[0] == 'hosp'):
+			print(notifyp[1])
 			for row in rows:
-				msg = "User Name:" + str(row["user_name"]) + " User Location :"  + str(row["user_location"])+  " Time: "+ str(row["created_at"]) + " Co-oridnates " + str(row["coordinates"]) + " Place : " + str(row["place_name"]) + " Source " + str(row["source"])
+				msg = "User Name: " + str(row["user_name"]) + "\nText: " + str(row["text"]) + "\nUser Location: "  + str(row["user_location"])+  "\nTime: "+ str(row["created_at"]) + "\nCo-oridnates: " + str(row["coordinates"]) + "\nPlace: " + str(row["place_name"]) + "\nSource: " + str(row["source"])
 				print("msg:"+msg+"\n")
 				client.messages.create(to="+918104890460",
                        from_="+15592451737",
-                       #body="User Name: {} User Location :{} Time: {} Co-oridnates {} Place : {} Source {}"+row["user_name"]+row["user_location"],row["created_at"],row["coordinates"],row["place_name"],row["source"]))
-						body=msg
+                       body=msg
 						)
 				account_sid = 'ACb0451e02563a5f905667d93400fa44ef'
 				auth_token = 'e2f6d0f7013bad8334c51cce7840b2af'
@@ -163,25 +163,100 @@ def about(keyword):
 				print(message.sid)
 		#print("DONE")
 		if(notifyp[0] == 'police'):
-			client.messages.create(to="+918104890460",
+			for row in rows:
+				msg = "User Name: " + str(row["user_name"]) + "\nText: " + str(row["text"]) + "\nUser Location: "  + str(row["user_location"])+  "\nTime: "+ str(row["created_at"]) + "\nCo-oridnates: " + str(row["coordinates"]) + "\nPlace: " + str(row["place_name"]) + "\nSource: " + str(row["source"])
+				print("msg:"+msg+"\n")
+				client.messages.create(to="+918104890460",
                        from_="+15592451737",
-                       body="Report zhala complete!")
+                       body=msg
+						)
+				account_sid = 'ACb0451e02563a5f905667d93400fa44ef'
+				auth_token = 'e2f6d0f7013bad8334c51cce7840b2af'
+				client = Client(account_sid, auth_token)
+
+				message = client.messages.create(
+				                              from_='whatsapp:+14155238886',
+				                              body=msg,
+				                              to='whatsapp:+917588926601'
+				                          )
+
+				# print(message.sid)
 		if(notifyp[0] == 'gov'):
-			client.messages.create(to="+918104890460",
+			for row in rows:
+				msg = "User Name: " + str(row["user_name"]) + "\nText: " + str(row["text"]) + "\nUser Location: "  + str(row["user_location"])+  "\nTime: "+ str(row["created_at"]) + "\nCo-oridnates: " + str(row["coordinates"]) + "\nPlace: " + str(row["place_name"]) + "\nSource: " + str(row["source"])
+				print("msg:"+msg+"\n")
+				client.messages.create(to="+918104890460",
                        from_="+15592451737",
-                       body="Report zhala complete!")
+                       body=msg
+						)
+				account_sid = 'ACb0451e02563a5f905667d93400fa44ef'
+				auth_token = 'e2f6d0f7013bad8334c51cce7840b2af'
+				client = Client(account_sid, auth_token)
+
+				message = client.messages.create(
+				                              from_='whatsapp:+14155238886',
+				                              body=msg,
+				                              to='whatsapp:+917588926601'
+				                          )
+
+				# print(message.sid)
 		if(notifyp[0] == 'fire'):
-			client.messages.create(to="+918104890460",
+			for row in rows:
+				msg = "User Name: " + str(row["user_name"]) + "\nText: " + str(row["text"]) + "\nUser Location: "  + str(row["user_location"])+  "\nTime: "+ str(row["created_at"]) + "\nCo-oridnates: " + str(row["coordinates"]) + "\nPlace: " + str(row["place_name"]) + "\nSource: " + str(row["source"])
+				print("msg:"+msg+"\n")
+				client.messages.create(to="+918104890460",
                        from_="+15592451737",
-                       body="Report zhala complete!")
+                       body=msg
+						)
+				account_sid = 'ACb0451e02563a5f905667d93400fa44ef'
+				auth_token = 'e2f6d0f7013bad8334c51cce7840b2af'
+				client = Client(account_sid, auth_token)
+
+				message = client.messages.create(
+				                              from_='whatsapp:+14155238886',
+				                              body=msg,
+				                              to='whatsapp:+917588926601'
+				                          )
+
+				# print(message.sid)
 		if(notifyp[0] == 'ngo'):
-			client.messages.create(to="+918104890460",
+			for row in rows:
+				msg = "User Name: " + str(row["user_name"]) + "\nText: " + str(row["text"]) + "\nUser Location: "  + str(row["user_location"])+  "\nTime: "+ str(row["created_at"]) + "\nCo-oridnates: " + str(row["coordinates"]) + "\nPlace: " + str(row["place_name"]) + "\nSource: " + str(row["source"])
+				print("msg:"+msg+"\n")
+				client.messages.create(to="+918104890460",
                        from_="+15592451737",
-                       body="Report zhala complete!")
+                       body=msg
+						)
+				account_sid = 'ACb0451e02563a5f905667d93400fa44ef'
+				auth_token = 'e2f6d0f7013bad8334c51cce7840b2af'
+				client = Client(account_sid, auth_token)
+
+				message = client.messages.create(
+				                              from_='whatsapp:+14155238886',
+				                              body=msg,
+				                              to='whatsapp:+917588926601'
+				                          )
+
+				# print(message.sid)
 		if(notifyp[0] == 'emerg'):
-			client.messages.create(to="+918104890460",
+			for row in rows:
+				msg = "User Name: " + str(row["user_name"]) + "\nText: " + str(row["text"]) + "\nUser Location: "  + str(row["user_location"])+  "\nTime: "+ str(row["created_at"]) + "\nCo-oridnates: " + str(row["coordinates"]) + "\nPlace: " + str(row["place_name"]) + "\nSource: " + str(row["source"])
+				print("msg:"+msg+"\n")
+				client.messages.create(to="+918104890460",
                        from_="+15592451737",
-                       body="Report zhala complete!")
+                       body=msg
+						)
+				account_sid = 'ACb0451e02563a5f905667d93400fa44ef'
+				auth_token = 'e2f6d0f7013bad8334c51cce7840b2af'
+				client = Client(account_sid, auth_token)
+
+				message = client.messages.create(
+				                              from_='whatsapp:+14155238886',
+				                              body=msg,
+				                              to='whatsapp:+917588926601'
+				                          )
+
+				# print(message.sid)
 
 	for i in rows:
 		print("yo",i["user_id"])
