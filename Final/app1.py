@@ -58,6 +58,7 @@ def rev():
 	if request.method == 'POST':
 		form = request.form
 		keyword = form['command']
+		print(keyword)
 		if(keyword == 'update'):
 			return redirect('/rev')
 		if(keyword == 'priority'):
@@ -70,7 +71,7 @@ def rev():
 			return about(keyword)
 
 	cur=con.cursor()
-	cur.execute("SELECT text,user_location FROM all_tweet WHERE hashtag = ? AND class = ? ",[session['h'],'Relevant'])
+	cur.execute("SELECT * FROM all_tweet WHERE hashtag = ? AND class = ? ",[session['h'],'Relevant'])
 	rows=cur.fetchall();
 	#print(type(rows))
 	rows.reverse()
@@ -91,7 +92,7 @@ def prior():
 		print(Error)
 
 	cur=con.cursor()
-	cur.execute("SELECT text,user_location FROM all_tweet WHERE hashtag = ? AND priority = ? ",[session['h'],'1'])
+	cur.execute("SELECT * FROM all_tweet WHERE hashtag = ? AND priority = ? ",[session['h'],'1'])
 
 	rows=cur.fetchall();
 	rows.reverse()
@@ -116,6 +117,10 @@ def prior():
 
 @app.route('/about', methods=['GET', 'POST'])
 def about(keyword):
+
+	# the following line needs your Twilio Account SID and Auth Token
+	client = Client("AC3964d536be16e00094f027bdd3b3ae30", "98a87736c8ebc28ba22e80628afa16f0")
+
 	try:
 		con=sql.connect("tweets.db")
 		con.row_factory=sql.Row
@@ -124,49 +129,63 @@ def about(keyword):
 		print(Error)
 
 	cur=con.cursor()
-	cur.execute("SELECT * FROM all_tweet where text = ?",[keyword])
+	print("key",keyword)
+	cur.execute("SELECT * FROM all_tweet where user_id = ?",[keyword])
 
 	rows=cur.fetchall();
-	print(rows)
-	print(type(rows))
-	
-	# the following line needs your Twilio Account SID and Auth Token
-	client = Client("AC3964d536be16e00094f027bdd3b3ae30", "98a87736c8ebc28ba22e80628afa16f0")
-	
+
 	if request.method == 'POST':
 		form = request.form
-		keyword = form['command']
-		print("done on goal")
-		if(keyword == 'hosp'):
+		notifyp = form['command'].split(".")
+		print("done on goal", notifyp)
+		if(notifyp[0] == 'hosp'):
+			print(notifyp[1])
+			cur.execute("SELECT * FROM all_tweet where user_id = ?",[notifyp[1]])
+			rows=cur.fetchall();
 			for row in rows:
-				msg = "User Name:" + row["user_name"] + " User Location :"  +row["user_location"]+  " Time: "+row["created_at"]+" Co-oridnates "+row["coordinates"]+" Place : "+row["place_name"]+" Source "+row["source"]
-				client.messages.create(to="+918104890460", 
-                       from_="+15592451737", 
+				msg = "User Name:" + str(row["user_name"]) + " User Location :"  + str(row["user_location"])+  " Time: "+ str(row["created_at"]) + " Co-oridnates " + str(row["coordinates"]) + " Place : " + str(row["place_name"]) + " Source " + str(row["source"])
+				print("msg:"+msg+"\n")
+				client.messages.create(to="+918104890460",
+                       from_="+15592451737",
                        #body="User Name: {} User Location :{} Time: {} Co-oridnates {} Place : {} Source {}"+row["user_name"]+row["user_location"],row["created_at"],row["coordinates"],row["place_name"],row["source"]))
 						body=msg
 						)
+				account_sid = 'ACb0451e02563a5f905667d93400fa44ef'
+				auth_token = 'e2f6d0f7013bad8334c51cce7840b2af'
+				client = Client(account_sid, auth_token)
+
+				message = client.messages.create(
+				                              from_='whatsapp:+14155238886',
+				                              body=msg,
+				                              to='whatsapp:+917588926601'
+				                          )
+
+				print(message.sid)
 		#print("DONE")
-		if(keyword == 'police'):
-			client.messages.create(to="+918104890460", 
-                       from_="+15592451737", 
+		if(notifyp[0] == 'police'):
+			client.messages.create(to="+918104890460",
+                       from_="+15592451737",
                        body="Report zhala complete!")
-		if(keyword == 'gov'):
-			client.messages.create(to="+918104890460", 
-                       from_="+15592451737", 
+		if(notifyp[0] == 'gov'):
+			client.messages.create(to="+918104890460",
+                       from_="+15592451737",
                        body="Report zhala complete!")
-		if(keyword == 'fire'):
-			client.messages.create(to="+918104890460", 
-                       from_="+15592451737", 
+		if(notifyp[0] == 'fire'):
+			client.messages.create(to="+918104890460",
+                       from_="+15592451737",
                        body="Report zhala complete!")
-		if(keyword == 'ngo'):
-			client.messages.create(to="+918104890460", 
-                       from_="+15592451737", 
+		if(notifyp[0] == 'ngo'):
+			client.messages.create(to="+918104890460",
+                       from_="+15592451737",
                        body="Report zhala complete!")
-		if(keyword == 'emerg'):
-			client.messages.create(to="+918104890460", 
-                       from_="+15592451737", 
+		if(notifyp[0] == 'emerg'):
+			client.messages.create(to="+918104890460",
+                       from_="+15592451737",
                        body="Report zhala complete!")
-			
+
+	for i in rows:
+		print("yo",i["user_id"])
+
 	return render_template('displayinfo.html',keyword=keyword,rows=rows)
 
 

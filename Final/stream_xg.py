@@ -38,7 +38,7 @@ def pred(data):
 #     buildVocabulary(preprocessedTrainingSet)
     trainingFeatures = nltk.classify.apply_features(extract_features, preprocessedTrainingSet)
 
-    print(preprocessedTrainingSet[0][0])
+    # print(preprocessedTrainingSet[0][0])
 
     NB = NBayesClassifier.classify(extract_features(preprocessedTrainingSet[0][0],word_features))
 
@@ -104,19 +104,19 @@ def attributeselection(tweet,query_word):
 
 
     column_names = ['no_of_words', 'no_of_verbs', 'pos_query_word', 'word_before', 'word_after']
-    print(attr,column_names)
+    # print(attr,column_names)
     df = pd.DataFrame([attr], columns=column_names)
     arr_x=df.to_numpy(dtype=object)
-    print(arr_x,arr_x.shape)
+    # print(arr_x,arr_x.shape)
     y_pred = XGBClassifier.predict(arr_x)
     str_y_pred = str(y_pred[0])
-    if str_y_pred == '[0]':
-        print("0")
-    else:
-        print("1")
+    # if str_y_pred == '[0]':
+    #     # print("0")
+    # else:
+    #     # print("1")
 
-    print(y_pred[0],type(y_pred[0]),y_pred.shape)
-    print(str_y_pred,type(str_y_pred))
+    # print(y_pred[0],type(y_pred[0]),y_pred.shape)
+    # print(str_y_pred,type(str_y_pred))
     return str_y_pred
 
 
@@ -173,8 +173,8 @@ class StdOutListener(StreamListener):
         else:
             place_name       = all_data['place']
 
-        print("hashtag: ",hashtag)
-        print("Tweet: "+text+"\n")
+        # print("hashtag: ",hashtag)
+        # print("Tweet: "+text+"\n")
 
         data = [{'text': text,'Classfication': ''}]
 
@@ -183,9 +183,9 @@ class StdOutListener(StreamListener):
 
         if info == 'Relevant' or info == 1 or info == '1':
             prior = attributeselection(text,hashtag)
-        print("PRIORITY: ",prior)
+        # print("PRIORITY: ",prior)
 
-        print("\n Class: "+info+"\n")
+        # print("\n Class: "+info+"\n")
 
         conn = sqlite3.connect('tweets.db')
         c = conn.cursor()
@@ -210,12 +210,12 @@ class StdOutListener(StreamListener):
 
 
 def stream(h):
-    print("              hfdshjdskfjdsklfjsdlkfjdslkfjflksdjfklsfjslk               ",h)
+    # print("              hfdshjdskfjdsklfjsdlkfjdslkfjflksdjfklsfjslk               ",h)
 
     global hashtag
     hashtag = h
     # if __name__ == '__main__':
-    print("hashtag: ",hashtag)
+    # print("hashtag: ",hashtag)
 
     fetched_tweets_filename = "tweets.json"
 

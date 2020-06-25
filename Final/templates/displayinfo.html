@@ -15,7 +15,7 @@
 	<form method="post">
 		{% for row in rows %}
 			<b>User_name:</b> {{row["user_name"]}} <br><br>
-			<b>Text:</b> {{keyword}}<br><br>
+			<b>Text:</b> {{row["text"]}}<br><br>
 			<b>Location:</b> {{row["user_location"]}}<br><br>
 			<b>Posted At:</b> {{row["created_at"]}}<br><br>
 			<b>User Screen Name:</b> {{row["user_screen_name"]}}<br><br>
@@ -24,7 +24,6 @@
 			<b>Retweet Count:</b> {{row["retweet_count"]}}<br><br>
 			<b>Place:</b> {{row["place_name"]}}<br><br>
 			<b>Source:</b> {{row["source"]}}<br><br>
-			{{break}}
 		{% endfor %}
 		<br>
 		<button class="button-two" name="command" value="back"><span>Back</span></button>
@@ -42,33 +41,33 @@
 					<tr>
 						<td>Hospitals</td>
 						<td>Name</td>
-						<td><button class="button-two" name="command" value="hosp"><span>Notify</span></button></td>
+						<td><button class="button-two" name="command" value="hosp.{{keyword}}"><span>Notify</span></button></td>
 					</tr>
 					<br>
 					<tr>
 						<td>Police</td>
 						<td>Name</td>
-						<td><button class="button-two" name="command" value="police"><span>Notify</span></button></td>
+						<td><button class="button-two" name="command" value="police.{{keyword}}"><span>Notify</span></button></td>
 					</tr>
 					<tr>
 						<td>Government Body</td>
 						<td>Name</td>
-						<td><button class="button-two" name="command" value="gov"><span>Notify</span></button></td>
+						<td><button class="button-two" name="command" value="gov.{{keyword}}"><span>Notify</span></button></td>
 					</tr>
 					<tr>
 						<td>Fire Brigade</td>
 						<td>Name</td>
-						<td><button class="button-two" name="command" value="fire"><span>Notify</span></button></td>
+						<td><button class="button-two" name="command" value="fire.{{keyword}}"><span>Notify</span></button></td>
 					</tr>
 					<tr>
 						<td>NGO</td>
 						<td>Name</td>
-						<td><button class="button-two" name="command" value="ngo"><span>Notify</span></button></td>
+						<td><button class="button-two" name="command" value="ngo.{{keyword}}"><span>Notify</span></button></td>
 					</tr>
 					<tr>
 						<td>Emergency Services  </td>
 						<td>Name</td>
-						<td><button class="button-two" name="command" value="emerg"><span>Notify</span></button></td>
+						<td><button class="button-two" name="command" value="emerg.{{keyword}}"><span>Notify</span></button></td>
 					</tr>
 				</table
 				</form>
