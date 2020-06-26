@@ -137,7 +137,6 @@ def about(keyword):
 	if request.method == 'POST':
 		form = request.form
 		notifyp = form['command'].split(".")
-		print("done on goal", notifyp)
 		if len(notifyp) == 2:
 			cur.execute("SELECT * FROM all_tweet where user_id = ?",[notifyp[1]])
 			rows=cur.fetchall();
