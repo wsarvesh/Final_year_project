@@ -257,9 +257,6 @@ def about(keyword):
 
 				# print(message.sid)
 
-	for i in rows:
-		print("yo",i["user_id"])
-
 	return render_template('displayinfo.html',keyword=keyword,rows=rows)
 
 
